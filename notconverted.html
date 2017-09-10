@@ -1,0 +1,207 @@
+<h2>Not Converted</h2>
+<p>The following classes and methods were not migrated from the original Webchanix.Toolshed to 
+    the new Toolshed library. The reasonong behind this decision is usefulness.
+</p>
+<p>As I started outting this library together, I started everything that looked generic enough
+    like a helper that would get used again. And really, a decade later - maybe not so true.
+</p>
+<p>Depending on reality and if it turns out they are useful, they might get added back into the main
+    library or perhaps a supllementary library.
+</p>
+
+
+<code>
+        public static class ImageExtensions
+        {
+    
+    
+            public static Bitmap GetResized(this Bitmap photo, int width, int height)
+            {
+                int newHeight = 0;
+                int newWidth = 0;
+    
+                if (photo.Width < width && photo.Height < height)
+                {
+                    return photo;
+                }
+    
+                if (photo.Width > photo.Height)
+                {
+                    SetSizes(ref newWidth, ref newHeight, photo.Width, photo.Height, width);
+                }
+                else
+                {
+                    SetSizes(ref newHeight, ref newWidth, photo.Height, photo.Width, height);
+                }
+    
+                Bitmap target = new Bitmap(newWidth, newHeight);
+                using (Graphics graphics = Graphics.FromImage(target))
+                {
+                    graphics.CompositingQuality = CompositingQuality.HighSpeed;
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    graphics.CompositingMode = CompositingMode.SourceCopy;
+                    graphics.DrawImage(photo, 0, 0, width, height);
+                    //using (MemoryStream memoryStream = new MemoryStream())
+                    //{
+                    //    target.Save(memoryStream, ImageFormat.Png);
+                    //    memoryStream.WriteTo(context.Response.OutputStream);
+                    //}
+                }
+    
+                return target;
+            }
+            public static Bitmap GetResizedCroppedSquare(this Bitmap photo, int size)
+            {
+                int width, height;
+                if (photo.Width > photo.Height)
+                {
+                    width = size * photo.Width / photo.Height;
+                    height = size;
+                }
+                else
+                {
+                    width = size;
+                    height = size * photo.Height / photo.Width;
+                }
+    
+                //Bitmap target = new Bitmap(width, height);
+                //using (Graphics graphics = Graphics.FromImage(target))
+                //{
+                //    graphics.CompositingQuality = CompositingQuality.HighSpeed;
+                //    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                //    graphics.CompositingMode = CompositingMode.SourceCopy;
+                //    graphics.DrawImage(photo, 0, 0, width, height);
+                //    //using (MemoryStream memoryStream = new MemoryStream())
+                //    //{
+                //    //    target.Save(memoryStream, ImageFormat.Png);
+                //    //    memoryStream.WriteTo(context.Response.OutputStream);
+                //    //}
+                //}
+    
+                Bitmap target = new Bitmap(size, size);
+                using (Graphics graphics = Graphics.FromImage(target))
+                {
+                    graphics.CompositingQuality = CompositingQuality.HighSpeed;
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    graphics.CompositingMode = CompositingMode.SourceCopy;
+                    graphics.DrawImage(photo, (size - width) / 2, (size - height) / 2, width, height);
+                }
+    
+                return target;
+    
+    
+                //int sourceWidth = originalImage.Width;
+                //int sourceHeight = originalImage.Height;
+                //int sourceX = 0;
+                //int sourceY = 0;
+                //int destX = 0;
+                //int destY = 0;
+    
+                //float nPercent = 0;
+                //float nPercentW = 0;
+                //float nPercentH = 0;
+    
+                //nPercentW = ((float)size / (float)sourceWidth);
+                //nPercentH = ((float)size / (float)sourceHeight);
+    
+                //if (nPercentH < nPercentW)
+                //{
+                //    nPercent = nPercentW;
+                //}
+                //else
+                //{
+                //    nPercent = nPercentH;
+                //}
+    
+                //int destWidth = (int)(sourceWidth * nPercent);
+                //int destHeight = (int)(sourceHeight * nPercent);
+    
+                //Bitmap bmPhoto = new Bitmap(size, size, PixelFormat.Format24bppRgb);
+                //bmPhoto.SetResolution(originalImage.HorizontalResolution, originalImage.VerticalResolution);
+    
+                //Graphics grPhoto = Graphics.FromImage(bmPhoto);
+                //grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic;
+    
+                //grPhoto.DrawImage(originalImage,
+                //    new Rectangle(destX, destY, destWidth, destHeight),
+                //    new Rectangle(sourceX, sourceY, sourceWidth, sourceHeight),
+                //    GraphicsUnit.Pixel);
+    
+                //grPhoto.Dispose();
+                //return bmPhoto;
+            }
+    
+            private static void SetSizes(ref int val1New, ref int val2New, int val1Original, int val2Original, int size)
+            {
+                var ratio = Webchanix.Toolshed.Arithmetic.Divide(size, val1Original);
+                val1New = size;
+    
+                var temp = val2Original * ratio;
+                val2New = Convert.ToInt32(temp);
+            }
+    
+            public static byte[] ToByte(this Bitmap bitmap, ImageFormat format)
+            {
+                byte[] byteArray = new byte[0];
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    bitmap.Save(stream, format);
+                    stream.Close();
+    
+                    byteArray = stream.ToArray();
+                }
+    
+                return byteArray;
+            }
+            public static byte[] ToByte(this Image image, ImageFormat format)
+            {
+                byte[] byteArray = new byte[0];
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    image.Save(stream, format);
+                    stream.Close();
+    
+                    byteArray = stream.ToArray();
+                }
+    
+                return byteArray;
+            }
+        }
+</code>
+
+
+<h4>XML</h4>
+<code>
+        public static class XmlExtensions
+        {
+            /// <summary>
+            /// Returns the name of an element with the specified namespace
+            /// </summary>
+            public static XName AsNamespaced(this string name, string @namespace)
+            {
+                if (!string.IsNullOrEmpty(@namespace))
+                {
+                    return XName.Get(name, @namespace);
+                }
+    
+                return (XName)name;
+            }
+    
+            public static void RemoveNamespace(this XDocument xdoc)
+            {
+                //from RestSharp
+                foreach (XElement e in xdoc.Root.DescendantsAndSelf())
+                {
+                    if (e.Name.Namespace != XNamespace.None)
+                    {
+                        e.Name = XNamespace.None.GetName(e.Name.LocalName);
+                    }
+                    if (e.Attributes().Any(a => a.IsNamespaceDeclaration || a.Name.Namespace != XNamespace.None))
+                    {
+                        e.ReplaceAttributes(e.Attributes().Select(a => a.IsNamespaceDeclaration ? null : a.Name.Namespace != XNamespace.None ? new XAttribute(XNamespace.None.GetName(a.Name.LocalName), a.Value) : a));
+                    }
+                }
+            }
+        }
+    
+</code>
