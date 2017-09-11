@@ -1,15 +1,45 @@
 <html>
+
 <head>
     <title>about | toolshed</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,500">
-    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <link rel="stylesheet" type="text/css" href="../styles.css">
 </head>
+
 <body>
-    <div style="max-width:600px; margin:0 auto;">
-        <h2>about Toolshed - why, when, where, what, who, </h2>
-        <p>I created Toolshed (or Webchanix.Toolshed) probably 7 or 8 years ago. Every project I worked on needed the same type
-            of functions on the BCL types. Again. And. Again.
+    <div class="nav clearfix">
+        <div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="index.html">Toolshed</a></li>
+                <li><a href="code.html">Docs/Code</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <h2>toolshed - the history </h2>
+        <p>I created Toolshed (or Webchanix.Toolshed) probably 10 or so years ago. Probably more. I forget.
+            I started working on it because every project I worked on needed the same type
+            of functions. Again. And. Again.
         </p>
+        <p>
+            Dates. Oh my dates. Dates were probably the main reason toolshed even became a thought. 
+            Like many developers (I am sure of it) dates are constantly being messed with (at least in LOB applications).
+            Adding, subtracting, start of the month, end of the month, last month, next month, YTD, MTD, start of the day, 
+            end of the day, so on and so forth.
+        </p>
+        <p>Then it was with dates. Then booleans. And it made sense to keep adding things to this library - because it madelife easy.
+            So much easier. Then we got extension methods and life really became easy because now you could do things like <code>DateTime.Today.EndOfDay()</code>
+            and BOOM! you end up with <code>7/4/2011 23:59:59</code> - how sweet is that?
+        </p>
+        <p>Fats forward 10 years of dev work and one continues reading how blogging and participating in the open source community
+            is important for personal development and for the overall goodness of our industry.
+        </p>
+        <p>My first attempt to "open source" Toolshed was under <strong>Webchanix.Toolshed</strong> and it was at the now defunct code.msdn.com. 
+        It got some downloads, can't remember how many, and some comments - mostly around culture - a German user if I remember correctly.
+    And that's what I first encountered cultures and the impact on numbers and dates.</p>
     </div>
 </body>
+
 </html>
