@@ -19,7 +19,7 @@
     </div>
     <div class="container">
         <h2>toolshed - the history </h2>
-        <p>I created Toolshed (or Webchanix.Toolshed) probably 10 or so years ago. Probably more. I forget.
+        <p>I created Toolshed (or Webchanix.Toolshed) probably 15 or so years ago. Probably more. I forget.
             I started working on it because every project I worked on needed the same type
             of functions. Again. And. Again.
         </p>
@@ -29,16 +29,37 @@
             Adding, subtracting, start of the month, end of the month, last month, next month, YTD, MTD, start of the day, 
             end of the day, so on and so forth.
         </p>
-        <p>Then it was with dates. Then booleans. And it made sense to keep adding things to this library - because it madelife easy.
+        <p>Then it was with dates. Then booleans. And it made sense to keep adding things to this library - because it made life easy.
             So much easier. Then we got extension methods and life really became easy because now you could do things like <code>DateTime.Today.EndOfDay()</code>
             and BOOM! you end up with <code>7/4/2011 23:59:59</code> - how sweet is that?
         </p>
-        <p>Fats forward 10 years of dev work and one continues reading how blogging and participating in the open source community
-            is important for personal development and for the overall goodness of our industry.
+        <p>Fast forward 15 years of working in the world of developers, programmers, software engineers, designers, coders, code monkeys and 
+            any other adjetive (good and bad) to describe those that do what we do (and if you're into this library - you know what that is).
+            The concept of blogging and contributing to open source is a huge thing. Professionally and personally. The impact of these two 
+            things (and there are other things of course) on personal development is great and plus the overall goodnes for the community/industry
+            at large.
         </p>
-        <p>My first attempt to "open source" Toolshed was under <strong>Webchanix.Toolshed</strong> and it was at the now defunct code.msdn.com. 
-        It got some downloads, can't remember how many, and some comments - mostly around culture - a German user if I remember correctly.
-    And that's what I first encountered cultures and the impact on numbers and dates.</p>
+        <p>Blogging is my personal cross to bear - but we'll move beyond that topic here.</p>
+        <p>My first attempt to "open source" Toolshed (or anything for that matter) was under <strong>Webchanix.Toolshed</strong> and it was 
+            at the now defunct code.msdn.com. It got some downloads, can't remember how many, and some comments - mostly around culture - a German user if I remember correctly.
+    And that's when I first encountered cultures and the impact on numbers and dates. And, for the record, I haven't done a good enough job 
+integrating cultures into toolshed. Maybe now that can be rectified. Maybe with others' help. Or not.</p>
+<p>So this attempt, officially starting at version 7 will be the final attempt (should anyone ever talk in absolutes?) at open sourcing this 
+    library and making it prepetually available GitHub.
+</p>
+<p>Why now? Why finally after all this time? Because it's about time. Better sooner than later. I want to provide something back. Because I read 
+    blog post after blog post, or look at library after library and I realize that there's an actual need (by some) for something like this. Not 
+    everyone has stitched together a library for all these common things that we do. So, there's a need, however minor, that can benefit from this 
+    work as much as I have benefited from other OSS projects. My tiny contribution.
+</p>
+<p>A few things that v7 will do versus previous versions. I will break out some of the more esoteric functions. As I go through the code I've realized 
+    I have only used some of the helpers in one project, eight years ago, do I really need to have that there? Also, things not supported by .net core 2.0 
+    which I'm already moving to. Things like configuration. My ASP.NET projects use/access config a lot. A lot. And I have a whole lot
+    of code around working with configs - default values when null, strongly-typed values (int, date, etc.), lists from config - those kind of things. 
+    That's no longer needed in .net core 2 (in v1?) since we can strongly type a config and have it injected into your classes. There will be a 
+    use in some cases where dependency injection is not possible or desired. In this case accessing a config (xml) or appsettings (json) will be 
+    needed, but I think adding it to a separate package will be best. But things can change in v8 :P 
+</p>
     </div>
 </body>
 
